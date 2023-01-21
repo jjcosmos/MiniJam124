@@ -39,6 +39,6 @@ public class Player : MonoBehaviour
       if (Game.Singleton.GameState != GameState.Racing) return;
 
       var steeringInput = Input.GetAxis("Horizontal");
-      _playerRigidbody.AddTorque(new Vector3(0f, steeringInput * Time.deltaTime * Game.Singleton.Settings.PlayerTurnSpeed, 0f));
+      _playerRigidbody.transform.Rotate(Vector3.up, steeringInput * Time.deltaTime * Game.Singleton.Settings.PlayerTurnSpeed, Space.Self);
    }
 }
