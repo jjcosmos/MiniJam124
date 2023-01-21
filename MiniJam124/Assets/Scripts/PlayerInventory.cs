@@ -14,4 +14,14 @@ public class PlayerInventory : MonoBehaviour
         NumberOfhandWarmer++;
         OnhandWarmerCollected.Invoke(this);
     }
+
+    public int playerCollision { get; private set; }
+
+    public UnityEvent<PlayerInventory> OnCollisionhit;
+
+    public void Collisionhit()
+    {
+        playerCollision--;
+        OnCollisionhit.Invoke(this);
+    }
 }

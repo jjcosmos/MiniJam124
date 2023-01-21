@@ -16,5 +16,6 @@ public class ScoreUI : MonoBehaviour
     public void UpdatescoreText(PlayerInventory playerInventory)
     {
         scoreText.text = playerInventory.NumberOfhandWarmer.ToString();
+        scoreText.text = playerInventory.playerCollision.ToString();
     }
 }
