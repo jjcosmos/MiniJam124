@@ -7,4 +7,6 @@ public class GameSettings : ScriptableObject
     public float PlayerTurnSpeed = 10f;
     public float HandwarmerBoostRatio = .1f;
     public float WarmerHoverHeight = 1f;
+    public int WarmersLostOnHit = 3;
+    public float FuelConsumptionSpeed = 5f;
 }

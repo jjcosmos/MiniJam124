@@ -23,10 +23,13 @@ public class ProgressTracker : MonoBehaviour
         if (index != (_currentIndex + 1) % _triggerZones.Count) return;
         
         _currentIndex++;
+        Debug.Log($"Current index is {_currentIndex}");
         
-        if (index == _triggerZones.Count - 1)
+        if (index == 0)
         {
-            OnLap?.Invoke(_triggerZones.Count / _currentIndex);
+            var laps = _currentIndex / _triggerZones.Count;
+            OnLap?.Invoke(laps);
+            Debug.Log($"Lap {laps}");
         }
     }
 }

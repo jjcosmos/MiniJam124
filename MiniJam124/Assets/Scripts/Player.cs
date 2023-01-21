@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
    private void UpdateMoveModifier(PlayerInventory i)
    {
       _moveModifier = i.NumberOfhandWarmer * (Game.Singleton.Settings.HandwarmerBoostRatio * Game.Singleton.Settings.PlayerMoveSpeed);
-      Debug.Log($"Setting move modifier to {_moveModifier} from {i.NumberOfhandWarmer} warmers");
+      //Debug.Log($"Setting move modifier to {_moveModifier} from {i.NumberOfhandWarmer} warmers");
    }
 
    private void AddForwardForce()
