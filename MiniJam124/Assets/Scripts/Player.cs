@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
 
    private void UpdateMoveModifier(PlayerInventory i)
    {
-      _moveModifier = i.NumberOfhandWarmer * (Game.Singleton.Settings.HandwarmerBoostRatio * Game.Singleton.Settings.PlayerMoveSpeed);
+      _moveModifier = Mathf.Clamp(i.NumberOfhandWarmer, 0, Game.Singleton.Settings.MaxWarmersForMult) *
+                      (Game.Singleton.Settings.HandwarmerBoostRatio * Game.Singleton.Settings.PlayerMoveSpeed);
       //Debug.Log($"Setting move modifier to {_moveModifier} from {i.NumberOfhandWarmer} warmers");
    }
 
@@ -36,9 +37,16 @@ public class Player : MonoBehaviour
 
    private void ProcessSteeringInput()
    {
-      if (Game.Singleton.GameState != GameState.Racing) return;
-
-      var steeringInput = Input.GetAxis("Horizontal");
-      _playerRigidbody.transform.Rotate(Vector3.up, steeringInput * Time.deltaTime * Game.Singleton.Settings.PlayerTurnSpeed, Space.Self);
+      if (Game.Singleton.GameState == GameState.CompletedRace)
+      {
+         var lookAt = Game.Singleton.ProgressTracker.LookAtTriggerZonePosition();
+         lookAt.z = transform.position.z;
+         //transform.right = (lookAt - transform.position).normalized;
+      }
+      else if(Game.Singleton.GameState == GameState.Racing)
+      {
+         var steeringInput = Input.GetAxis("Horizontal");
+         _playerRigidbody.transform.Rotate(Vector3.up, steeringInput * Time.deltaTime * Game.Singleton.Settings.PlayerTurnSpeed, Space.Self);
+      }
    }
 }

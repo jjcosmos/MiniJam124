@@ -27,6 +27,15 @@ public class Game : MonoBehaviour
     {
         StartTime = DateTime.Now;
         GameState = GameState.Racing;
+        ProgressTracker.OnLap += OnLap;
+    }
+
+    private void OnLap(int obj)
+    {
+        if (obj == Singleton.Settings.RequiredLaps)
+        {
+            GameState = GameState.CompletedRace;
+        }
     }
 }
 

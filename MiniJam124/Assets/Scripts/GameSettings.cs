@@ -10,4 +10,5 @@ public class GameSettings : ScriptableObject
     public int WarmersLostOnHit = 3;
     public float FuelConsumptionSpeed = 5f;
     public int RequiredLaps = 3;
+    public int MaxWarmersForMult = 14;
 }

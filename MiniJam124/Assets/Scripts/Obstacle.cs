@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.TryGetComponent(out PlayerInventory playerInventory))
+        if (collision.collider.TryGetComponent(out PlayerInventory playerInventory))
         {
             playerInventory.Collisionhit();
             gameObject.SetActive(false);

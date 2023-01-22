@@ -14,6 +14,12 @@ public class ProgressTracker : MonoBehaviour
         {
             progressTriggerZone.Owner = this;
         }
+        OnLap?.Invoke(0);
+    }
+
+    public Vector3 LookAtTriggerZonePosition()
+    {
+        return _triggerZones[(_currentIndex + 1)%_triggerZones.Count].transform.position;
     }
 
     public void TriggerZoneEntered(ProgressTriggerZone zone)
@@ -23,13 +29,11 @@ public class ProgressTracker : MonoBehaviour
         if (index != (_currentIndex + 1) % _triggerZones.Count) return;
         
         _currentIndex++;
-        Debug.Log($"Current index is {_currentIndex}");
         
         if (index == 0)
         {
             var laps = _currentIndex / _triggerZones.Count;
             OnLap?.Invoke(laps);
-            Debug.Log($"Lap {laps}");
         }
     }
 }

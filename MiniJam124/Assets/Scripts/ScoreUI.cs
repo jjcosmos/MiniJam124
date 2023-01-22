@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ public class ScoreUI : MonoBehaviour
     {
         Game.Singleton.CurrentPlayer.GetComponent<PlayerInventory>().OnhandWarmerCollected.AddListener(UpdatescoreText);
         Game.Singleton.ProgressTracker.OnLap += OnLap;
+        OnLap(0);
     }
 
     private void Update()
@@ -22,7 +22,7 @@ public class ScoreUI : MonoBehaviour
 
     private void OnLap(int lap)
     {
-        _lapText.text = $"Lap {lap + 1}/{Game.Singleton.Settings.RequiredLaps}";
+        _lapText.text = lap >= Game.Singleton.Settings.RequiredLaps ? "Finish!" : $"Lap {lap + 1}/{Game.Singleton.Settings.RequiredLaps}";
     }
 
     public void UpdatescoreText(PlayerInventory playerInventory)
