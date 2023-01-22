@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   PlayerMoveSpeed: 5000
-  PlayerTurnSpeed: 30
+  PlayerTurnSpeed: 40
   HandwarmerBoostRatio: 0.1
   WarmerHoverHeight: 1
+  WarmersLostOnHit: 3
+  FuelConsumptionSpeed: 10
+  RequiredLaps: 3

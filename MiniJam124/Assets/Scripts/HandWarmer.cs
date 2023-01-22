@@ -6,6 +6,17 @@ public class HandWarmer : MonoBehaviour
     {
         // So that they are easy to drag onto the track
         transform.Translate(Vector3.up * Game.Singleton.Settings.WarmerHoverHeight);
+        Game.Singleton.ProgressTracker.OnLap += OnLap;
+    }
+
+    private void OnDestroy()
+    {
+        Game.Singleton.ProgressTracker.OnLap -= OnLap;
+    }
+
+    private void OnLap(int _)
+    {
+        gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -9,4 +9,5 @@ public class GameSettings : ScriptableObject
     public float WarmerHoverHeight = 1f;
     public int WarmersLostOnHit = 3;
     public float FuelConsumptionSpeed = 5f;
+    public int RequiredLaps = 3;
 }

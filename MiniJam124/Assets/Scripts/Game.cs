@@ -5,6 +5,7 @@ public class Game : MonoBehaviour
 {
     public static Game Singleton;
     public Player CurrentPlayer;
+    public ProgressTracker ProgressTracker;
     public GameState GameState { get; private set; }
     [field: SerializeField] public GameSettings Settings { get; private set; }
 

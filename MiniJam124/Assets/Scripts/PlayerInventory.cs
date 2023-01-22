@@ -17,7 +17,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
-        _fuelTimer = Game.Singleton.Settings.FuelConsumptionSpeed;
+        ResetFuelTimer();
     }
 
     private void Update()
@@ -34,8 +34,13 @@ public class PlayerInventory : MonoBehaviour
         if (_fuelTimer <= 0f)
         {
             ModifyFuelWithFx(-1);
-            _fuelTimer = Game.Singleton.Settings.FuelConsumptionSpeed;
+            ResetFuelTimer();
         }
+    }
+
+    private void ResetFuelTimer()
+    {
+        _fuelTimer = Game.Singleton.Settings.FuelConsumptionSpeed;
     }
 
     public int playerCollision { get; private set; }
@@ -52,6 +57,7 @@ public class PlayerInventory : MonoBehaviour
     // TODO: Actually add fx
     private void ModifyFuelWithFx(int mod)
     {
+        ResetFuelTimer();
         NumberOfhandWarmer += mod;
         NumberOfhandWarmer = Mathf.Clamp(NumberOfhandWarmer, 0, int.MaxValue);
         OnhandWarmerCollected.Invoke(this);

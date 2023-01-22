@@ -1,21 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    private TextMeshProUGUI scoreText;
+    [SerializeField] private TMP_Text _lapText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
+        Game.Singleton.CurrentPlayer.GetComponent<PlayerInventory>().OnhandWarmerCollected.AddListener(UpdatescoreText);
+        Game.Singleton.ProgressTracker.OnLap += OnLap;
+    }
+
+    private void OnLap(int lap)
+    {
+        _lapText.text = $"Lap {lap + 1}/{Game.Singleton.Settings.RequiredLaps}";
     }
 
     public void UpdatescoreText(PlayerInventory playerInventory)
     {
-        scoreText.text = playerInventory.NumberOfhandWarmer.ToString();
-        scoreText.text = playerInventory.playerCollision.ToString();
+        scoreText.text = "x" + playerInventory.NumberOfhandWarmer;
     }
 }
