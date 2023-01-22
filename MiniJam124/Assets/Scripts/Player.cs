@@ -7,18 +7,35 @@ public class Player : MonoBehaviour
    private PlayerInventory _inventory;
    private float _moveModifier = 1f;
 
+   [SerializeField] private AudioSource _sliderSource;
+
    private void Start()
    {
       _playerRigidbody = GetComponent<Rigidbody>();
       _inventory = GetComponent<PlayerInventory>();
+      _playerRigidbody.isKinematic = true;
       
       _inventory.OnhandWarmerCollected.AddListener(UpdateMoveModifier);
    }
 
    private void Update()
    {
+      if (Game.Singleton.GameState == GameState.Racing && _playerRigidbody.isKinematic)
+      {
+         _playerRigidbody.isKinematic = false;
+      }
+      
       AddForwardForce();
       ProcessSteeringInput();
+      UpdateSkidSound();
+   }
+   
+   private void UpdateSkidSound()
+   {
+      var velocity = _playerRigidbody.velocity.magnitude;
+      var scale = velocity / 45f;
+      _sliderSource.volume = scale;
+      _sliderSource.pitch = 1 + Mathf.Lerp(-.1f, .1f, _sliderSource.volume);
    }
 
    private void UpdateMoveModifier(PlayerInventory i)
@@ -37,7 +54,7 @@ public class Player : MonoBehaviour
 
    private void ProcessSteeringInput()
    {
-      if(Game.Singleton.GameState == GameState.Racing || Game.Singleton.GameState == GameState.CompletedRace)
+      if(Game.Singleton.GameState is GameState.Racing or GameState.CompletedRace)
       {
          var steeringInput = Input.GetAxis("Horizontal");
          _playerRigidbody.transform.Rotate(Vector3.up, steeringInput * Time.deltaTime * Game.Singleton.Settings.PlayerTurnSpeed, Space.Self);

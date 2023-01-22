@@ -9,9 +9,13 @@ public class PlayerInventory : MonoBehaviour
     public int NumberOfhandWarmer { get; private set; }
 
     public UnityEvent<PlayerInventory> OnhandWarmerCollected;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _clip;
+    [SerializeField] private AudioClip _hurtClip;
 
     public void handWarmerCollected()
     {
+        _source.PlayOneShot(_clip);
         ModifyFuelWithFx(1);
     }
 
@@ -50,6 +54,7 @@ public class PlayerInventory : MonoBehaviour
     public void Collisionhit()
     {
         ModifyFuelWithFx(-Game.Singleton.Settings.WarmersLostOnHit);
+        _source.PlayOneShot(_hurtClip);
         playerCollision--;
         OnCollisionhit.Invoke(this);
     }

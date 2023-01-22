@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
         if (collision.collider.TryGetComponent(out PlayerInventory playerInventory))
         {
             playerInventory.Collisionhit();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

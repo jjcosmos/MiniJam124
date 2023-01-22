@@ -11,6 +11,8 @@ public class HandWarmer : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!Game.Singleton.ProgressTracker) return;
+        Game.Singleton.ProgressTracker.OnLap += OnLap;
         Game.Singleton.ProgressTracker.OnLap -= OnLap;
     }
 

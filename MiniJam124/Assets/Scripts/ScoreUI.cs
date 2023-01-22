@@ -8,12 +8,19 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private Image _fillImage;
+    [SerializeField] private TMP_Text _highScoreText;
 
     private void Start()
     {
         Game.Singleton.CurrentPlayer.GetComponent<PlayerInventory>().OnhandWarmerCollected.AddListener(UpdatescoreText);
         Game.Singleton.ProgressTracker.OnLap += OnLap;
+        Game.Singleton.OnHighScore += OnHighScore;
         OnLap(0);
+    }
+
+    private void OnHighScore(int obj)
+    {
+        _highScoreText.text = $"New High Score ({scoreText.text})!";
     }
 
     private void Update()
