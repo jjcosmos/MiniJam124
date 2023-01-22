@@ -7,7 +7,8 @@ public class Game : MonoBehaviour
     public Player CurrentPlayer;
     public ProgressTracker ProgressTracker;
     public DateTime StartTime;
-    public TimeSpan TimeSinceStart => DateTime.Now - StartTime;
+    private DateTime _endTime;
+    public TimeSpan TimeSinceStart => _endTime - StartTime;
     public GameState GameState { get; private set; }
     [field: SerializeField] public GameSettings Settings { get; private set; }
 
@@ -28,6 +29,14 @@ public class Game : MonoBehaviour
         StartTime = DateTime.Now;
         GameState = GameState.Racing;
         ProgressTracker.OnLap += OnLap;
+    }
+
+    private void Update()
+    {
+        if (GameState == GameState.Racing)
+        {
+            _endTime = DateTime.Now;
+        }
     }
 
     private void OnLap(int obj)

@@ -21,7 +21,7 @@ public class HandWarmer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlayerInventory playerInventory))
+        if (Game.Singleton.GameState == GameState.Racing && other.TryGetComponent(out PlayerInventory playerInventory))
         {
             playerInventory.handWarmerCollected();
             gameObject.SetActive(false);

@@ -37,13 +37,7 @@ public class Player : MonoBehaviour
 
    private void ProcessSteeringInput()
    {
-      if (Game.Singleton.GameState == GameState.CompletedRace)
-      {
-         var lookAt = Game.Singleton.ProgressTracker.LookAtTriggerZonePosition();
-         lookAt.z = transform.position.z;
-         //transform.right = (lookAt - transform.position).normalized;
-      }
-      else if(Game.Singleton.GameState == GameState.Racing)
+      if(Game.Singleton.GameState == GameState.Racing || Game.Singleton.GameState == GameState.CompletedRace)
       {
          var steeringInput = Input.GetAxis("Horizontal");
          _playerRigidbody.transform.Rotate(Vector3.up, steeringInput * Time.deltaTime * Game.Singleton.Settings.PlayerTurnSpeed, Space.Self);

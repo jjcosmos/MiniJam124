@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _lapText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private Image _fillImage;
 
     private void Start()
     {
@@ -27,6 +29,8 @@ public class ScoreUI : MonoBehaviour
 
     public void UpdatescoreText(PlayerInventory playerInventory)
     {
+        var fillAmount = Mathf.Clamp01((float)playerInventory.NumberOfhandWarmer / (float)Game.Singleton.Settings.MaxWarmersForMult);
+        _fillImage.fillAmount = fillAmount;
         scoreText.text = "x" + playerInventory.NumberOfhandWarmer;
     }
 }

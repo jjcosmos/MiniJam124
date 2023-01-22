@@ -18,5 +18,5 @@ MonoBehaviour:
   WarmerHoverHeight: 1
   WarmersLostOnHit: 3
   FuelConsumptionSpeed: 10
-  RequiredLaps: 1
+  RequiredLaps: 3
   MaxWarmersForMult: 14
