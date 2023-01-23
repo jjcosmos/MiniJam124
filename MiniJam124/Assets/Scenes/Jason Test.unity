@@ -1646,7 +1646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -3.3299866, y: 7.730011}
+  m_AnchoredPosition: {x: -3.330017, y: 7.730011}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &551748090
@@ -5331,6 +5331,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973334720167550903, guid: ca4108efd4980c24cb45fdd78a8b04a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159917988066294040, guid: ca4108efd4980c24cb45fdd78a8b04a5,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159917988066294040, guid: ca4108efd4980c24cb45fdd78a8b04a5,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159917988066294040, guid: ca4108efd4980c24cb45fdd78a8b04a5,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1478810002804061105, guid: ca4108efd4980c24cb45fdd78a8b04a5, type: 3}
